@@ -436,17 +436,17 @@ export default class Embed {
    * @return {Object}
    *
    */
-  matchService(str) {
-    let url = str
-    const ary = str.match(/<iframe\ssrc=['|"](.+?)['|"].+iframe>$/)
-    if (ary && ary.length > 0) url = ary[1]
+  matchService(str = '') {
+    const ary = str.match(/<iframe.*?\ssrc=(['|"])(.+?)\1.+iframe>/)
+    const url = (ary && ary[2]) || str
+
+    if (!url) return
 
     // match service
     const obj = null
     const services = Embed.services
     for (var key in services) {
       if (services.hasOwnProperty(key)) {
-        console.log('for in services')
         const { regex } = services[key]
         if (regex.test(url)) {
           obj = this.composePasteEventMock(key, url)
