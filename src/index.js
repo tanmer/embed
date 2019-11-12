@@ -57,9 +57,7 @@ export default class Embed {
    */
   static get toolbox() {
     return {
-      icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M6 4C4.89543 4 4 4.89543 4 6V18C4 19.1046 4.89543 20 6 20H18C19.1046 20 20 19.1046 20 18V6C20 4.89543 19.1046 4 18 4H6ZM18 5H6C5.44772 5 5 5.44772 5 6V18C5 18.5523 5.44772 19 6 19H18C18.5523 19 19 18.5523 19 18V6C19 5.44772 18.5523 5 18 5ZM9.04134 7.65814L16.4752 11.8482L9.04134 16.3761V7.65814ZM10.0413 9.36968V14.5961L14.498 11.8816L10.0413 9.36968Z" fill="#212132"/>
-      </svg>`,
+      icon: `<svg t="1573526873279" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2413" width='20'><path d="M862.02 264.97c-65.37 29.94-110.78 64.79-110.78 64.79V290.8c0-60.28-47.46-109.33-105.76-109.33H173.61c-58.31 0-105.73 49.06-105.73 109.33v464.57c0 60.3 47.42 109.3 105.73 109.3h471.87c58.3 0 105.76-49 105.76-109.3v-30.75s49.91 33.12 115.19 60.59c69.16 30.89 94.29-8.98 94.29-71.02V319.54c-0.8-41.21-21.79-89.48-98.7-54.57z m-6.45 327.95c-0.79 46.6-6.34 60.31-49.95 46.84-50.36-14.98-68.17-35.9-68.17-35.9-8.54-5.07-74.85-5.07-83.38 0-8.54 5.12-8.55 8.6-8.55 18.79v84.47c0 28.84-24.61 52.51-52.51 52.51h-367.6c-27.9 0-52.51-23.67-52.51-52.51V339.54c0-28.85 24.61-52.52 52.51-52.52H593c27.91 0 52.51 23.67 52.51 52.52v86.18c0 10.19 0.01 15.24 8.55 20.34 8.53 5.07 74.84 5.07 83.38 0 0 0 22.95-23.89 73.51-39.89 15.03-4.88 44.61-11.14 44.61 44.93 0.01 42.24 0.01 98.98 0.01 141.82zM310.45 372.05c-29 0-52.51 23.51-52.51 52.51 0 29 23.51 52.51 52.51 52.51 29 0 52.51-23.51 52.51-52.51 0-29-23.52-52.51-52.51-52.51z" p-id="2414"></path></svg>`,
       title: 'Embed'
     };
   }
@@ -82,12 +80,7 @@ export default class Embed {
       wrapper: null,
       container: null,
       input: null,
-      inputHolder: null,
-      linkContent: null,
-      linkImage: null,
-      linkTitle: null,
-      linkDescription: null,
-      linkText: null
+      inputHolder: null
     };
   }
 
@@ -437,13 +430,14 @@ export default class Embed {
    *
    */
   matchService(str = '') {
+
     const ary = str.match(/<iframe.*?\ssrc=(['|"])(.+?)\1.+iframe>/)
     const url = (ary && ary[2]) || str
 
     if (!url) return
 
     // match service
-    const obj = null
+    let obj = null
     const services = Embed.services
     for (var key in services) {
       if (services.hasOwnProperty(key)) {
