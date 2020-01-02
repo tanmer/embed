@@ -89,8 +89,8 @@ export default class Embed {
    * @param {RegExp} [data.regex] - pattern of source URLs
    * @param {string} [data.embedUrl] - URL scheme to embedded page. Use '<%= remote_id %>' to define a place to insert resource id
    * @param {string} [data.html] - iframe which contains embedded content
-   * @param {number} [data.height] - iframe height
-   * @param {number} [data.width] - iframe width
+   * @param {number || string} [data.height] - iframe height
+   * @param {number || string} [data.width] - iframe width
    * @param {string} [data.caption] - caption
    */
   set data(data) {
@@ -327,8 +327,9 @@ export default class Embed {
       && html && typeof html === 'string';
 
     isValid = isValid && (id !== undefined ? id instanceof Function : true);
-    isValid = isValid && (height !== undefined ? Number.isFinite(height) : true);
-    isValid = isValid && (width !== undefined ? Number.isFinite(width) : true);
+    isValid = isValid && (height !== undefined ? CSS.supports('height', height) : true);
+    isValid = isValid && (width !== undefined ? CSS.supports('width', width) : true);
+
 
     return isValid;
   }
