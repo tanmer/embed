@@ -8,8 +8,8 @@ import {debounce} from 'debounce';
  * @property {string} service - service name
  * @property {string} url - source URL of embedded content
  * @property {string} embed - URL to source embed page
- * @property {number} [width] - embedded content width
- * @property {number} [height] - embedded content height
+ * @property {css string} [width] - embedded content width
+ * @property {css string} [height] - embedded content height
  * @property {string} [caption] - content caption
  *
  * @typedef {Object} Service
@@ -17,8 +17,8 @@ import {debounce} from 'debounce';
  * @property {RegExp} regex - pattern of source URLs
  * @property {string} embedUrl - URL scheme to embedded page. Use '<%= remote_id %>' to define a place to insert resource id
  * @property {string} html - iframe which contains embedded content
- * @property {number} [height] - iframe height
- * @property {number} [width] - iframe width
+ * @property {css string} [height] - iframe height
+ * @property {css string} [width] - iframe width
  * @property {Function} [id] - function to get resource id from RegExp groups
  *
  * @typedef {Object} EmbedConfig
@@ -89,8 +89,8 @@ export default class Embed {
    * @param {RegExp} [data.regex] - pattern of source URLs
    * @param {string} [data.embedUrl] - URL scheme to embedded page. Use '<%= remote_id %>' to define a place to insert resource id
    * @param {string} [data.html] - iframe which contains embedded content
-   * @param {number || string} [data.height] - iframe height
-   * @param {number || string} [data.width] - iframe width
+   * @param {css string} [data.height] - iframe height
+   * @param {css string} [data.width] - iframe width
    * @param {string} [data.caption] - caption
    */
   set data(data) {
