@@ -136,9 +136,9 @@ export default class Embed {
   get CSS() {
     return {
       baseClass: this.api.styles.block,
-      inputEl: 'embed-tool__input',
-      inputHolder: 'embed-tool__input-holder',
-      inputError: 'embed-tool__input-holder--error',
+      inputHolder: 'embed-tool__holder',
+      inputEl: 'embed-tool__holder-input',
+      inputError: 'embed-tool__holder-input--error',
       input: this.api.styles.input,
       container: 'embed-tool',
       containerLoading: 'embed-tool--loading',
@@ -155,9 +155,10 @@ export default class Embed {
    * @return {HTMLElement}
    */
   render() {
-    if (!this.data.service) {
-      const container = document.createElement('div');
+    const container = document.createElement('div');
+    container.classList.add(this.CSS.baseClass, this.CSS.container, this.CSS.containerLoading);
 
+    if (!this.data.service) {
       this.nodes.inputHolder = this.makeInputHolder();
       container.appendChild(this.nodes.inputHolder);
 
@@ -167,12 +168,11 @@ export default class Embed {
     }
 
     const {html} = Embed.services[this.data.service];
-    const container = document.createElement('div');
+
     // const caption = document.createElement('div');
     const template = document.createElement('template');
     const preloader = this.createPreloader();
 
-    container.classList.add(this.CSS.baseClass, this.CSS.container, this.CSS.containerLoading);
     // caption.classList.add(this.CSS.input, this.CSS.caption);
 
     container.appendChild(preloader);
@@ -362,9 +362,9 @@ export default class Embed {
   }
 
   makeInputHolder() {
-    const inputHolder = this.make('div', this.CSS.inputHolder);
+    const inputHolder = this.make('div', [this.CSS.input, this.CSS.inputHolder]);
 
-    this.nodes.input = this.make('div', [this.CSS.input, this.CSS.inputEl], {
+    this.nodes.input = this.make('div', this.CSS.inputEl, {
       contentEditable: true
     });
 
@@ -383,6 +383,7 @@ export default class Embed {
     });
 
     this.nodes.input.addEventListener('keydown', (event) => {
+      this.removeErrorStyle()
       const [ENTER, A] = [13, 65];
       const cmdPressed = event.ctrlKey || event.metaKey;
       switch (event.keyCode) {
