@@ -1,6 +1,8 @@
 {
   "name": "@editorjs/embed",
-  "version": "2.2.1-3",
+  "version": "2.2.1",
+  "version": "2.3.1",
+  "version-tanmer": "1.0.4",
   "keywords": [
     "codex editor",
     "embed",

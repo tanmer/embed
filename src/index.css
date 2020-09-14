@@ -97,6 +97,13 @@
     text-overflow: ellipsis;
   }
 
+  &__content {
+    width: 100%;
+    padding: 20px;
+    background: rgb(233 236 239 / 48%);
+    border-radius: 10px;
+  }
+
   &__caption {
     margin-top: 7px;
 
