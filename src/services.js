@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 export default {
   vimeo: {
     regex: /(?:http[s]?:\/\/)?(?:www.)?vimeo\.co(?:.+\/([^\/]\d+)(?:#t=[\d]+)?s?$)/,
@@ -21,10 +22,10 @@ export default {
         start: 'start',
         end: 'end',
         t: 'start',
-        'time_continue': 'start',
-        list: 'list'
+        // eslint-disable-next-line camelcase
+        time_continue: 'start',
+        list: 'list',
       };
-
 
       params = params.slice(1)
         .split('&')
@@ -33,17 +34,20 @@ export default {
 
           if (!id && name === 'v') {
             id = value;
+
             return;
           }
 
-          if (!paramsMap[name]) return;
+          if (!paramsMap[name]) {
+            return;
+          }
 
           return `${paramsMap[name]}=${value}`;
         })
         .filter(param => !!param);
 
       return id + '?' + params.join('&');
-    }
+    },
   },
   coub: {
     regex: /https?:\/\/coub\.com\/view\/([^\/\?\&]+)/,
